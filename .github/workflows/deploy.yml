@@ -4,7 +4,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    # deploy-trigger 为临时触发分支（用于手动触发一次构建），部署稳定后会移除
+    branches: [main, deploy-trigger]
   # 允许在 Actions 页面手动点「Run workflow」触发
   workflow_dispatch:
 
