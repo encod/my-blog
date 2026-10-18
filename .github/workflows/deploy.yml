@@ -44,10 +44,12 @@ jobs:
 
       - name: 配置 Pages
         uses: actions/configure-pages@v5
-        with:
-          # 关键：自动启用 Pages（source=GitHub Actions），
-          # 这样不需要去网页 Settings → Pages 手动点开关
-          enablement: true
+        # 注意：不能在 action 里用 enablement: true 自动开通 Pages。
+        # 开通 Pages 属于仓库管理员操作，Actions 内置的 GITHUB_TOKEN 没有该权限，
+        # 会报 "Resource not accessible by integration"。
+        # 因此仓库首次部署需在网页端打开一次：
+        # Settings → Pages → Build and deployment → Source 选 GitHub Actions。
+        # 开通一次后，后续每次 git push 全自动，无需再操作。
 
       - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
