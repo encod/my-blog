@@ -6,8 +6,12 @@
 /** 基本信息 */
 export const profile = {
   name: '阿彩',
-  /** 头像：放在 public 下，导航 Logo 与首页 Hero 共用 */
-  avatar: '/avatar.jpg',
+  /**
+   * 头像：放在 public 下，导航 Logo 与首页 Hero 共用。
+   * 必须拼 BASE_URL 而不是写死 '/avatar.jpg'：
+   * 部署在 GitHub Pages 子路径（/my-blog/）时，写死根路径会 404。
+   */
+  avatar: `${import.meta.env.BASE_URL}avatar.jpg`,
   /** 头像兜底文字，图片加载失败时使用 */
   avatarText: 'FE',
   title: '前端开发工程师 · Vue / 工程化',
