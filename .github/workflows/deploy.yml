@@ -4,8 +4,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    # deploy-trigger 为临时触发分支（用于手动触发一次构建），部署稳定后会移除
-    branches: [main, deploy-trigger]
+    # 只监听 main：推送到 main 即自动构建并发布
+    branches: [main]
   # 允许在 Actions 页面手动点「Run workflow」触发
   workflow_dispatch:
 
@@ -48,7 +48,7 @@ jobs:
         # 注意：不能在 action 里用 enablement: true 自动开通 Pages。
         # 开通 Pages 属于仓库管理员操作，Actions 内置的 GITHUB_TOKEN 没有该权限，
         # 会报 "Resource not accessible by integration"。
-        # 因此仓库首次部署需在网页端打开一次：
+        # 因此仓库首次部署需在网页端操作一次：
         # Settings → Pages → Build and deployment → Source 选 GitHub Actions。
         # 开通一次后，后续每次 git push 全自动，无需再操作。
 
