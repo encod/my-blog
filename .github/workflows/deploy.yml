@@ -44,6 +44,10 @@ jobs:
 
       - name: 配置 Pages
         uses: actions/configure-pages@v5
+        with:
+          # 关键：自动启用 Pages（source=GitHub Actions），
+          # 这样不需要去网页 Settings → Pages 手动点开关
+          enablement: true
 
       - name: 上传构建产物
         uses: actions/upload-pages-artifact@v3
