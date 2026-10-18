@@ -4,6 +4,9 @@
 
 - 线上地址：https://encod.github.io/my-blog/
 - 仓库地址：https://github.com/encod/my-blog
+- Gitee 镜像（仅代码）：https://gitee.com/ACaiYaTou/my-blog
+  - `master` 分支：完整源码；`gh-pages` 分支：构建产物
+  - 注意：Gitee Pages 静态托管已下线，`*.gitee.io` 域名不再可用，Gitee 仅作国内代码镜像
 
 ## 功能
 
