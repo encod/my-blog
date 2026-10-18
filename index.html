@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="前端学习笔记、Git、Vue、AI 编码与面试笔记的个人技术博客" />
+    <title>前端笔记 · 个人技术博客</title>
+    <script>
+      /**
+       * 主题预加载脚本（同步执行，早于 Vue 挂载）
+       * 目的：避免刷新页面时先渲染亮色再跳暗色导致的白屏闪烁
+       * 优先级：本地存储 > 系统偏好 > 亮色
+       */
+      ;(function () {
+        try {
+          var saved = localStorage.getItem('blog-theme')
+          var isDark = saved
+            ? saved === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+          if (isDark) document.documentElement.classList.add('dark')
+        } catch (e) {
+          /* localStorage 不可用时忽略 */
+        }
+      })()
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

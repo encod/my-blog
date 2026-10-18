@@ -1,0 +1,62 @@
+# GitHub Pages 自动部署
+# 推送到 main 分支即自动构建并发布，无需手动上传 dist
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # 允许在 Actions 页面手动点「Run workflow」触发
+  workflow_dispatch:
+
+# Pages 部署必需的权限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同时只跑一个部署任务，避免互相覆盖
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 准备 Node 环境
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: 安装依赖
+        run: npm ci
+
+      - name: 构建
+        # GITHUB_REPOSITORY 形如 "encod/my-blog"，取后半段作为子路径
+        # 这样仓库名改了也不用回来改配置
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY##*/}"
+          npm run build -- --base "/$REPO_NAME/"
+
+      - name: 配置 Pages
+        uses: actions/configure-pages@v5
+
+      - name: 上传构建产物
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 发布到 Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

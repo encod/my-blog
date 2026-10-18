@@ -1,0 +1,189 @@
+/* ==========================================================
+   文章正文排版
+   注意：本文件需在 Tailwind 之后引入，否则元素样式会被 preflight 重置
+   ========================================================== */
+.markdown-body {
+  @apply text-[15px] leading-7 text-slate-700 dark:text-slate-300;
+}
+
+.markdown-body > *:first-child {
+  @apply mt-0;
+}
+
+/* 标题：层级用左边框区分，移动端适当缩小字号 */
+.markdown-body h1 {
+  @apply mb-4 mt-10 border-l-4 border-brand-500 pl-3 text-2xl font-semibold text-slate-900
+         dark:text-slate-100 sm:text-3xl;
+}
+
+.markdown-body h2 {
+  @apply mb-4 mt-10 border-l-4 border-brand-500 pl-3 text-xl font-semibold text-slate-900
+         dark:text-slate-100 sm:text-2xl;
+}
+
+.markdown-body h3 {
+  @apply mb-3 mt-8 text-lg font-semibold text-slate-900 dark:text-slate-100 sm:text-xl;
+}
+
+.markdown-body h4 {
+  @apply mb-2 mt-6 text-base font-semibold text-slate-900 dark:text-slate-100;
+}
+
+/* 段落与列表 */
+.markdown-body p {
+  @apply my-4;
+}
+
+.markdown-body ul {
+  @apply my-4 list-disc pl-6;
+}
+
+.markdown-body ol {
+  @apply my-4 list-decimal pl-6;
+}
+
+.markdown-body li {
+  @apply my-1.5;
+}
+
+.markdown-body li > ul,
+.markdown-body li > ol {
+  @apply my-1.5;
+}
+
+/* 引用块 */
+.markdown-body blockquote {
+  @apply my-5 rounded-r-lg border-l-4 border-brand-500 bg-brand-50/60 px-4 py-3
+         text-slate-600 dark:bg-brand-500/10 dark:text-slate-300;
+}
+
+.markdown-body blockquote p {
+  @apply my-0;
+}
+
+/* 链接 */
+.markdown-body a {
+  @apply text-brand-600 underline decoration-brand-400/50 underline-offset-2
+         transition hover:decoration-brand-600 dark:text-brand-400;
+}
+
+/* 强调 */
+.markdown-body strong {
+  @apply font-semibold text-slate-900 dark:text-slate-100;
+}
+
+/* 分割线 */
+.markdown-body hr {
+  @apply my-8 border-slate-200 dark:border-slate-800;
+}
+
+/* 图片：移动端不溢出 */
+.markdown-body img {
+  @apply my-5 h-auto max-w-full rounded-lg;
+}
+
+/* 表格：外层容器负责横向滚动 */
+.markdown-body .table-wrapper {
+  @apply my-5 overflow-x-auto rounded-lg border border-slate-200 dark:border-slate-800;
+}
+
+.markdown-body table {
+  @apply w-full border-collapse text-sm;
+}
+
+.markdown-body th {
+  @apply bg-slate-50 px-4 py-2 text-left font-semibold dark:bg-slate-800/60;
+}
+
+.markdown-body td {
+  @apply border-t border-slate-200 px-4 py-2 dark:border-slate-800;
+}
+
+/* ==========================================================
+   代码块
+   ========================================================== */
+.markdown-body pre {
+  @apply my-5 overflow-x-auto rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm
+         leading-relaxed dark:border-slate-800 dark:bg-slate-900/70;
+}
+
+.markdown-body pre code {
+  @apply block font-mono;
+  background: transparent;
+  padding: 0;
+}
+
+/* 行内代码 */
+.markdown-body :not(pre) > code {
+  @apply rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[0.88em] text-brand-600
+         dark:bg-slate-800 dark:text-brand-400;
+}
+
+/* ==========================================================
+   highlight.js 配色：亮色一套、暗色一套
+   不引官方主题文件，这样才能跟随 html.dark 切换
+   ========================================================== */
+.hljs-comment,
+.hljs-quote {
+  @apply italic text-slate-400 dark:text-slate-500;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag {
+  @apply text-rose-600 dark:text-rose-400;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+  @apply text-emerald-700 dark:text-emerald-400;
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
+  @apply text-sky-700 dark:text-sky-400;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  @apply font-medium text-violet-700 dark:text-violet-400;
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable,
+.hljs-template-variable {
+  @apply text-amber-700 dark:text-amber-400;
+}
+
+.hljs-built_in,
+.hljs-type,
+.hljs-class .hljs-title {
+  @apply text-teal-700 dark:text-teal-400;
+}
+
+.hljs-meta {
+  @apply text-slate-500 dark:text-slate-400;
+}
+
+.hljs-params {
+  @apply text-slate-600 dark:text-slate-300;
+}
+
+.hljs-deletion {
+  @apply text-rose-700 dark:text-rose-500;
+}
+
+.hljs-emphasis {
+  @apply italic;
+}
+
+.hljs-strong {
+  @apply font-semibold;
+}
